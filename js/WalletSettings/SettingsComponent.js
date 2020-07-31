@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import {FlatList, Text, TouchableWithoutFeedback, View} from 'react-native';
 import WalletDetails from './WalletDetails';
 import BackArrow from '../Redemptions/CommonComponents/BackArrow';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import inlineStyle from './styles'
 
@@ -51,6 +52,13 @@ class SettingsComponent extends PureComponent {
 
     /// If using react-navigation.
     let navigation = this.props.navigation;
+    let route = this.props.route;
+
+    if (navigation && route) {
+      ostUserId = ostUserId || route.params['ostUserId'];
+      delegate = delegate || route.params['ostWalletUIWorkflowCallback'];
+    }
+
     if ( navigation && navigation.getParam ) {
       ostUserId = ostUserId || navigation.getParam("ostUserId");
       delegate  = delegate || navigation.getParam("ostWalletUIWorkflowCallback");
@@ -169,6 +177,17 @@ class SettingsComponent extends PureComponent {
       <>
         <WalletDetails viewData={walletDetailsData} modalVisible={this.state.modalVisible} userId={this.controller.userId} onBackButtonPress={() => this.hideWalletDetails()} flatlistLayout={this.flatListLayout}/>
       <View style= {inlineStyle.list}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <TouchableWithoutFeedback onPress={() => this.props.navigation.goBack()}>
+            <View style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name='arrow-back' size={30} />
+            </View>
+          </TouchableWithoutFeedback>
+          <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+            <Text style={{ fontSize: 18 }}>Wallet Settings</Text>
+          </View>
+          <View style={{ width: 60 }} />
+        </View>
         <FlatList
           data={this.state.list}
           refreshing={this.state.refreshing}
