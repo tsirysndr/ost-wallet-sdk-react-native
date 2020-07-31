@@ -29,5 +29,8 @@
     "lodash.merge": "4.6.2",
     "bignumber.js": "8.1.1",
     "react-native-picker-select": "6.5.0"
+  },
+  "dependencies": {
+    "react-native-vector-icons": "^6.6.0"
   }
 }
