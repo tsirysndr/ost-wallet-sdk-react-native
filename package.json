@@ -31,6 +31,6 @@
     "react-native-picker-select": "6.5.0"
   },
   "dependencies": {
-    "react-native-vector-icons": "^6.6.0"
+    "react-native-vector-icons": "6.6.0"
   }
 }
